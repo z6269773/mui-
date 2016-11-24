@@ -1,0 +1,345 @@
+{
+  "register.html": {
+    "resources": [
+      "js/j_s.js",
+      "js/mui.min.js",
+      "css/y_s.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/monitor.js"
+    ],
+    "refer": [
+      "signIn.html"
+    ]
+  },
+  "signIn.html": {
+    "resources": [
+      "js/j_s.js",
+      "js/mui.min.js",
+      "css/y_s.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "register.html",
+      "webview_sub/index.html",
+      "webview.html"
+    ]
+  },
+  "webview_sub/index.html": {
+    "resources": [
+      "js/j_s.js",
+      "css/y_s.css",
+      "css/mui.css",
+      "img/index/mystore_wallet_icon.png",
+      "img/index/ingdex_g_gao.jpg",
+      "img/banner/banner1.jpg",
+      "img/index/pay_bank_ump_icon.png",
+      "img/banner/banner6.jpg",
+      "img/index/actionbar_logo.png",
+      "img/index/mystore_profit_icon.png",
+      "img/banner/banner3.jpg",
+      "js/mui.min.js",
+      "img/index/mystore_first_choose_icon.png",
+      "img/index/home_icon_laba.png",
+      "img/banner/banner5.jpg",
+      "img/index/im_msg_icon.png",
+      "fonts/mui.ttf",
+      "img/index/ju_hua.jpg",
+      "img/index/home_icon_news.png",
+      "img/index/mystore_score_mall_icon.png",
+      "img/index/mystore_feedback_icon.png",
+      "img/banner/banner2.jpg",
+      "img/banner/banner4.jpg",
+      "img/index/mystore_shop_foot_icon.png",
+      "img/index/mystore_myfavourite_icon.png",
+      "img/index/mystore_online_service_icon.png",
+      "img/index/mystore_vip_icon.png",
+      "img/index/fei_lei.png",
+      "img/index/wen_jian.png",
+      "img/index/chuang_yi.png",
+      "img/index/hao_shuBang.png",
+      "img/index/dian_zishu.png",
+      "img/index/tong_zhaung.png",
+      "img/index/hai_wai.png",
+      "img/index/wei_kuan.png",
+      "img/index/tong_shu.png",
+      "img/index/yun_dong.png",
+      "img/index/index_guang_gao.jpg",
+      "img/index/329366.jpg",
+      "img/index/50013396.jpg",
+      "img/index/home_attr_arrow.png",
+      "img/index/zhi_dang.jpg",
+      "img/index/sheng_aodi.jpg",
+      "img/index/nan_zhaung.jpg",
+      "img/index/tu_shu.jpg",
+      "img/index/tong_shu.jpg",
+      "img/index/mei_zhuang.jpg",
+      "img/index/60360651.jpg",
+      "img/index/fu_zhuag.png",
+      "img/index/mu_ying.png",
+      "img/index/tong_shubang.png",
+      "img/index/wei_hui.png",
+      "img/index/mei_zhuang.png",
+      "img/index/hao_shubang.png"
+    ],
+    "refer": [
+      "StoreFile/shop.html"
+    ]
+  },
+  "webview.html": {
+    "resources": [
+      "webview_sub/index.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/j_s.js",
+      "webview_sub/oneself.html",
+      "webview_sub/TheShoppingCart.html"
+    ],
+    "refer": [
+      "webview_sub/index.html",
+      "webview_sub/TheShoppingCart.html",
+      "webview_sub/oneself.html",
+      "webview_sub/classification.html",
+      "webview_sub/find.html"
+    ]
+  },
+  "webview_sub/classification.html": {
+    "resources": [
+      "img/index/actionbar_logo.png",
+      "img/index/im_msg_icon.png",
+      "js/j_s.js",
+      "css/y_s.css",
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "webview_sub/classification-webview/bookPage.html"
+    ],
+    "refer": [
+      "webview_sub/classification-webview/bookPage.html",
+      "webview_sub/classification-webview/electronicBook.html",
+      "webview_sub/classification-webview/womenSpage.html",
+      "webview_sub/classification-webview/creativeStationery.html",
+      "webview_sub/classification-webview/tongshuye.html"
+    ]
+  },
+  "webview_sub/find.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/y_s.css",
+      "img/shuji_img/li_shi/aaa.jpg",
+      "img/shuji_img/san_wen/sasas.jpg",
+      "img/shuji_img/tong_hua/ind22ex.jpg",
+      "img/shuji_img/san_wen/u\u003d1414078161,3985598588\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "img/shuji_img/tong_hua/u\u003d1461782622,1239496579\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "img/shuji_img/li_shi/iasndex.jpg",
+      "img/shuji_img/4.jpg",
+      "img/shuji_img/2.jpg",
+      "img/shuji_img/1.jpg",
+      "img/shuji_img/5.jpg",
+      "img/shuji_img/3.jpg",
+      "img/shuji_img/7.jpg",
+      "img/shuji_img/6.jpg",
+      "css/mui.css"
+    ],
+    "refer": []
+  },
+  "webview_sub/oneself.html": {
+    "resources": [
+      "img/index/actionbar_logo.png",
+      "img/index/im_msg_icon.png",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/y_s.css",
+      "img/ogq.png",
+      "img/she_zhi.png",
+      "img/xin_xi.png",
+      "fonts/mui.ttf",
+      "img/gou_wu_che/mystore_icon1.png",
+      "img/gou_wu_che/rv4_setting_item_arrow.png",
+      "img/gou_wu_che/she_zhi.png",
+      "img/gou_wu_che/ogq.png",
+      "img/gou_wu_che/xin_xi.png",
+      "img/gou_wu_che/tui_kuan.png",
+      "img/gou_wu_che/dai_fukuan.png",
+      "img/gou_wu_che/dai_pingjia.png",
+      "img/gou_wu_che/wu_liu.png",
+      "img/gou_wu_che/dai_fahuo.png",
+      "img/gou_wu_che/mystore_my_asset_profit.png",
+      "img/gou_wu_che/mystore_my_asset_gift_card.png",
+      "img/gou_wu_che/mystore_my_asset_name_card.png",
+      "img/gou_wu_che/ic_read_summary_comment.png",
+      "img/gou_wu_che/mystore_my_asset_medal.png"
+    ],
+    "refer": [
+      "signIn.html",
+      "settingsPage.html",
+      "StoreFile/commodityOrder.html"
+    ]
+  },
+  "webview_sub/TheShoppingCart.html": {
+    "resources": [
+      "js/j_s.js",
+      "js/mui.min.js",
+      "css/y_s.css",
+      "css/mui.min.css",
+      "img/xia_la.png",
+      "img/gou_wu_che/zu_ji.png",
+      "img/gou_wu_che/shou_cang.png",
+      "fonts/mui.ttf",
+      "img/vip.png",
+      "img/shuji_img/li_shi/iasndex.jpg",
+      "img/gou_wu_che/delete.png",
+      "jquery/jquery-1.9.1.js"
+    ],
+    "refer": [
+      "signIn.html",
+      "StoreFile/orderPage.html",
+      "StoreFile/shop.html",
+      "webview_sub/index.html"
+    ]
+  },
+  "ModifyInformation.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "js/j_s.js"
+    ],
+    "refer": []
+  },
+  "settingsPage.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/y_s.css"
+    ],
+    "refer": [
+      "ModifyInformation.html"
+    ]
+  },
+  "StoreFile/shop.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/y_s.css",
+      "img/shuji_img/xiao_shuo/ind11ex.jpg",
+      "css/mui.css",
+      "img/shuji_img/xiao_shuo/index.jpg",
+      "img/shuji_img/xiao_shuo/u\u003d2305005896,1766157512\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "img/shuji_img/xiao_shuo/u\u003d1092136356,2134691970\u0026fm\u003d11\u0026gp\u003d0.jpg",
+      "img/shuji_img/xiao_shuo/index22.jpg",
+      "img/shuji_img/xiao_shuo/u\u003d2401201333,2572308597\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "img/shuji_img/xiao_shuo/u\u003d4237346232,3144841762\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "img/shuji_img/xiao_shuo/u\u003d1563569094,2140163628\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "img/shuji_img/xiao_shuo/u\u003d4242769426,1117182076\u0026fm\u003d21\u0026gp\u003d0.jpg",
+      "js/j_s.js",
+      "img/shuji_img/li_shi/iasndex.jpg"
+    ],
+    "refer": [
+      "StoreFile/ProductDetails.html"
+    ]
+  },
+  "StoreFile/ProductDetails.html": {
+    "resources": [
+      "js/j_s.js",
+      "js/mui.min.js",
+      "css/y_s.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "img/banner/banner2.jpg",
+      "img/banner/banner4.jpg",
+      "img/banner/banner1.jpg",
+      "img/banner/banner5.jpg",
+      "img/banner/banner6.jpg",
+      "img/banner/banner3.jpg",
+      "css/mui.css",
+      "img/groupon_oversea_tag.png",
+      "img/bao_zhang.jpg",
+      "img/product_detail_fav_btn_enable.png",
+      "img/shang_pingxiqing.png",
+      "img/icon_baby_fav.png",
+      "img/gou_wu_che/dai_fahuo.png",
+      "img/gou_wu_che/dai_fukuan.png",
+      "img/gou_wu_che/ogq.png",
+      "jquery/jquery-1.9.1.js"
+    ],
+    "refer": [
+      "webview.html",
+      "signIn.html"
+    ]
+  },
+  "StoreFile/commentPage.html": {
+    "resources": [
+      "js/j_s.js",
+      "js/mui.min.js",
+      "css/y_s.css",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ]
+  },
+  "StoreFile/orderPage.html": {
+    "resources": [
+      "js/j_s.js",
+      "js/mui.min.js",
+      "css/y_s.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "jquery/jquery-1.9.1.js"
+    ],
+    "refer": [
+      "StoreFile/PaymentSuccess.html"
+    ]
+  },
+  "StoreFile/PaymentSuccess.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "webview.html"
+    ],
+    "refer": [
+      "webview.html"
+    ]
+  },
+  "StoreFile/commodityOrder.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/j_s.js",
+      "jquery/jquery-1.9.1.js",
+      "css/y_s.css"
+    ],
+    "refer": [
+      "StoreFile/EvaluationPage.html"
+    ]
+  },
+  "StoreFile/EvaluationPage.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "webview_sub/classification-webview/bookPage.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/y_s.css",
+      "img/banner/banner1.jpg"
+    ]
+  },
+  "webview_sub/classification-webview/electronicBook.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/y_s.css",
+      "css/mui.min.css",
+      "img/banner/banner5.jpg"
+    ]
+  }
+}

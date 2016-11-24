@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/y_s.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">商品详情</h1>
+			<a class="mui-icon mui-icon-left-nav" id="closeID"></a>
+			<a class="mui-icon mui-icon-more mui-pull-right" style="font-size: 30px;"></a>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop" style="height: 185px;width: 100%;">
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#"><img id="carouselImg1" src=""></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img id="carouselImg2" src=""></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img id="carouselImg3" src=""></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img id="carouselImg5" src=""></a>
+					</div>
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#"><img id="carouselImg6" src=""></a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator" style="margin-left: 5px;"></div>
+					<div class="mui-indicator" style="margin-left: 5px;"></div>
+				</div>
+			</div>
+			<div style="height: 40px;width: 100%; padding: 0px 10px; background-color: white;">
+				<div class="wu-price">￥<span style="font-size: 18px;" id="aDiscount"></span></div>
+				<div class="wu-price" style="font-size: 15px;color: #B6B6B6;"><s>￥<span style="font-size: 15px;" id="">113.00</span></s></div>
+				<div class="wu-price" style="font-size: 15px;color: #B6B6B6;"><span style="font-size: 15px;" id="">4.60</span>折</div>
+			</div>
+			<div style="padding: 3px 15px;background-color: white;">
+				<p class="mui-ellipsis" style="color: #222;font-size: 15px;" id="briefIntroduction"></p>
+				<div style="font-size: 13px;" id="author">作者：<label id="Author" style="font-size: 13px;"></label></div>
+			</div>
+			<div style="height: 50px; line-height: 50px; background-color: white; margin: 6px 0px; padding: 0px 10px; font-size: 13px;">
+				<div style="width: 50px; height: 50px; padding:5px;float: left; margin-right: 10px;">
+					<img src="../img/groupon_oversea_tag.png" style="width:100%;" />
+				</div>
+				满￥100.00减￥4.00，满￥200.00减￥10.00，
+			</div>
+			<div style="width: 100%;height: 100px; background-color: white; padding: 10px;">
+				<div style="width: 100%; height: 40px;line-height: 40px; border-bottom: 1px solid #D8D8D8;">
+					<img src="../img/bao_zhang.jpg" style="width: 100%;" />
+				</div>
+				<div style="width: 100%; height: 40px;line-height: 40px;">
+					<label style="color: #B6B6B6; margin-right: 15px;">送至</label><span></span>
+				</div>
+			</div>
+
+			<div style="width: 100%;height: 1500px; background-color: white; padding: 10px; margin-top: 6px;">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						商品评论(<span id="theNumber"></span>人)
+						<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #B6B6B6;"></a>
+						<span class="mui-pull-right" style="color: orangered; font-size: 14px;">100.00%好评</span>
+						<ul class="mui-table-view" style="margin-top: 10px;" id="ratedCapacity">
+						</ul>
+					</li>
+					<li class="mui-table-view-cell" style="color: orangered;">
+						<div style="width: 25px;float: left; margin-right: 10px;"><img src="../img/product_detail_fav_btn_enable.png" style="width: 100%;" /></div>商品详情
+					</li>
+					<div style="width: 100%;">
+						<img src="../img/shang_pingxiqing.png" style="width: 100%;" />
+					</div>
+				</ul>
+			</div>
+		</div>
+		<div class="Settlement">
+			<div class="Collection" id="CollectionMe">
+				<div style="width: 100%; height: 40px;padding: 15px;">
+					<img src="../img/icon_baby_fav.png" style="width: 100%;">
+				</div>
+				<div style="width: 100%; height: 20px; line-height: 20px; text-align: center; font-size: 12px;">收藏</div>
+			</div>
+			<div class="shoppingCart" id="shoppingCartMe">
+				<div style="width: 100%; height: 40px;padding: 15px;">
+					<img src="../img/gou_wu_che/dai_fahuo.png" style="width: 100%;">
+				</div>
+				<div style="width: 100%; height: 20px; line-height: 20px; text-align: center; font-size: 12px;">购物车</div>
+			</div>
+			<div class="Shopping" style="line-height: 60px;" id="ShoppingMe">
+				立即购买
+			</div>
+			<div class="addShoppingCart" style="line-height: 60px;" id="addShoppingCartMe">
+				加入购物车
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/j_s.js"></script>
+	<script type="text/javascript" src="../jquery/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		var num = 0;
+		var srcImg;
+		document.getElementById("closeID").addEventListener("tap", function() {
+			var myClose = plus.webview.currentWebview();
+			plus.webview.close(myClose);
+		});
+
+		var url = "http://139.196.196.64/s.asmx";
+		var gallery = mui("#slider");
+		gallery.slider({
+			interval: 4000
+		});
+
+		mui.plusReady(function() {
+			var strName = plus.storage.getItem('number');
+			getAjax(url + "/SelectByKey", {
+					id: 'www',
+					table: 'bookInformation',
+					key: 'bookID',
+					value: strName
+				},
+				function(a) {
+					var ojp = JSON.parse(a);
+					srcImg = ojp[0].imgSrc;
+					document.getElementById("carouselImg1").src = innerHTML = ojp[0].imgSrc;
+					document.getElementById("carouselImg2").src = innerHTML = ojp[0].imgSrc;
+					document.getElementById("carouselImg3").src = innerHTML = ojp[0].imgSrc;
+					document.getElementById("carouselImg5").src = innerHTML = ojp[0].imgSrc;
+					document.getElementById("carouselImg6").src = innerHTML = ojp[0].imgSrc;
+					document.getElementById("aDiscount").innerHTML = ojp[0].Price;
+					document.getElementById("briefIntroduction").innerHTML = ojp[0].bookIntroduction;
+					document.getElementById("Author").innerHTML = ojp[0].author;
+				},
+				function(d) {
+					mui.toast("    请连接网络        ");
+				}
+			)
+
+			getAjax(url + "/SelectAll", {
+					id: 'www',
+					table: 'evaluationForm'
+				},
+				function(qe) {
+					var ojpr = JSON.parse(qe);
+					for(var i = 0; i < ojpr.length; i++) {
+						if(ojpr[i].evacomNumber == strName) {
+							$("#ratedCapacity").prepend("<li class='mui-table-view-cell'>" +
+								"<div class='wu-name'>" +
+								"<div class='wu-name-img'><img src='../img/gou_wu_che/ogq.png' style='width: 100%;'></div>" +
+								"<div class='wu-name-min' id='evaUserName'>无污染</div>" +
+								"<div class='wu-name-time' id='evaTime'>113113131</div>" +
+								"</div>" +
+								"<div id='evaContent'>时间还发安徽发啊接啊放假啊老费劲啊禁伐令</div>" +
+								"</li>")
+							document.getElementById("evaUserName").innerHTML = ojpr[i].evauserID;
+							document.getElementById("evaTime").innerHTML = ojpr[i].evaDate;
+							document.getElementById("evaContent").innerHTML = ojpr[i].evaluatingCapacity;
+						}
+					}
+					var strip = document.getElementById("ratedCapacity");
+			        document.getElementById("theNumber").innerHTML=strip.childNodes.length-1;
+				},
+				function(q) {
+					alert(q);
+				}
+			)
+			
+		});
+
+		document.getElementById("addShoppingCartMe").addEventListener("tap", function() {
+			if(plus.storage.getItem('userName') == null) {
+				mui.toast("    你还未登录        ");
+				mui.openWindow({
+					url:'../signIn.html',
+					id:'signIn.html',
+				});
+				return false;
+			} else {
+				var myPrice = document.getElementById("aDiscount").innerHTML;
+				var myBookName = document.getElementById("briefIntroduction").innerHTML;
+				num++;
+				if(num > 1) {
+					mui.toast("    已用同类商品        ");
+				} else {
+					var strName = plus.storage.getItem('number');
+					var strSopId = plus.storage.getItem('sopUserID');
+					getAjax(url + "/Insert", {
+							id: 'www',
+							table: 'shoppingCartInformation',
+							values: JSON.stringify({
+								shoppingID: 1,
+								sopBookID: strName,
+								sopUserID: strSopId,
+								bookName: myBookName,
+								price: myPrice,
+								imgSrc: srcImg,
+								sopNumber: 1,
+								state: 0
+							})
+						},
+						function(e) {
+							mui.toast("    加入成功        ");
+						},
+						function(p) {
+							mui.toast("    网路不稳定        ");
+						}
+					)
+
+				}
+			}
+
+		});
+		
+	</script>
+
+</html>

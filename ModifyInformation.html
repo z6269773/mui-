@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">修改信息</h1>
+			<a class="mui-icon mui-icon-left-nav" id="headerClose"></a>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+						<label>旧 密 码：</label>
+						<input type="text" id="oldPass" placeholder="请输入旧密码" />
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+						<label>新 密 码：</label>
+						<input type="password" id="newPass" placeholder="请输入新密码" />
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+						<label>确认密码：</label>
+						<input type="password" id="confirmPass" placeholder="请输入确认密码" />
+					</div>
+				</li>
+				<div class="" style="padding: 10px;">
+					<button class="mui-btn-blue mui-btn-block" id="modifyBtn">确认修改</button>
+				</div>
+			</ul>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/j_s.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		var url = "http://139.196.196.64/s.asmx";
+		document.getElementById("headerClose").addEventListener("tap", function() {
+			mui.currentWebview.close();
+		});
+
+		document.getElementById("modifyBtn").addEventListener("tap", function() {
+			var myOldPass = document.getElementById("oldPass").value;
+			var myNewPass = document.getElementById("newPass").value;
+			var myConfirmPass = document.getElementById("confirmPass").value;
+			var strNum = plus.storage.getItem('userPass');
+			if(myOldPass == "") {
+				mui.toast("       旧密码不能为空        ");
+				return false;
+			} else if(myOldPass != strNum) {
+				mui.toast("       旧密码不正确        ");
+				return false;
+			}
+
+			if(myNewPass == "") {
+				mui.toast("       新密码不能为空        ");
+				return false;
+			} else if(myConfirmPass == "") {
+				mui.toast("       确认密码不能为空        ");
+			} else if(myNewPass != myConfirmPass) {
+				mui.toast("       前后密码不一致        ");
+			} else {
+				getAjax(url + "/SelectByKey", {
+						id: 'www',
+						table: 'wu',
+						key: 'password',
+						value: myOldPass,
+					},
+					function(a) {
+						alert(a);
+						var ojp = JSON.parse(a);
+						if(a == "[]") {
+							alert("密码错误");
+						} else {
+							var myID = ojp[0].userID;
+							var myName = ojp[0].userName;
+							var myNumber = ojp[0].phoneNumber;
+							var myState = ojp[0].useState;
+							getAjax(url + "/Update", {
+									id: 'www',
+									table: 'wu',
+									key: 'password',
+									keyvalue:strNum,
+									values: JSON.stringify({
+										'userID': myID,
+										'userName': myName,
+										'password': myNewPass,
+										'phoneNumber': myNumber,
+										'useState': myState
+									})
+								},
+								function(a) {
+									mui.toast("        修改成功，请重新登录               ");
+									
+								},
+								function(b) {
+									mui.toast("        修改失败            ");
+								})
+						}
+
+					},
+					function(d) {
+						alert(d);
+					}
+				)
+			}
+		});
+
+		document.getElementById("headerClose").addEventListener("tap", function() {
+			var myClose = plus.webview.currentWebview();
+			plus.webview.close(myClose);
+		});
+	</script>
+
+</html>

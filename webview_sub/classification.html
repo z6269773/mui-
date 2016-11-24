@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/y_s.css" />
+		<script type="text/javascript" src="../js/j_s.js"></script>
+		<style type="text/css">
+			body{
+				background-color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-speech mui-input-clear" placeholder="搜素商品/类型/品牌">
+			</div>
+		</header>
+		<div class="mui-content" style="background-color: white;" id="nav">
+			<div class="wu-sideBar">
+				<a href="../webview_sub/classification-webview/bookPage.html" class="wu-sideBar-option wu-sideBar-option-a" onclick="change(this)" id="wwww">
+					图书
+				</a>
+				<a href="../webview_sub/classification-webview/electronicBook.html" class="wu-sideBar-option" onclick="change(this)">
+					电子书
+				</a>
+				<a href="../webview_sub/classification-webview/creativeStationery.html" class="wu-sideBar-option" onclick="change(this)">
+					创意文具
+				</a>
+				<a href="../webview_sub/classification-webview/tongshuye.html" class="wu-sideBar-option" onclick="change(this)">
+					童书
+				</a>
+				<a href="../webview_sub/classification-webview/womenSpage.html" class="wu-sideBar-option" onclick="change(this)">
+					女装
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					男装
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					男女鞋
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					运动户外
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					箱包皮具
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					内衣配饰
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					童装童鞋
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					珠宝饰品
+				</a>
+				<a href="###" class="wu-sideBar-option" onclick="change(this)">
+					育婴装
+				</a>
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		var tabArray = ["../webview_sub/classification-webview/bookPage.html", "../webview_sub/classification-webview/electronicBook.html", "../webview_sub/classification-webview/creativeStationery.html", "../webview_sub/classification-webview/tongshuye.html", "../webview_sub/classification-webview/womenSpage.html"]
+		var tabImg = ["img/xiao_xi/skin_tab_icon_contact_selected.png", "img/xiao_xi/skin_tab_icon_conversation_selected.png", "img/xiao_xi/skin_tab_icon_plugin_selected.png"]
+		var tabArray_style = {
+			top: "47px",
+			bottom: "0px",
+			left:'100px'
+		};
+
+		mui.plusReady(function() {
+			var seft = plus.webview.currentWebview();
+			for(var i = 0; i < 1; i++) {
+				var sub = plus.webview.create(tabArray[i], tabArray[i], tabArray_style);
+				if(i > 0) {
+					sub.hide();
+				}
+				seft.append(sub);
+			}
+		});
+
+		var students = tabArray[0];
+		mui("#nav").on("tap", "a", function() {
+			var myHref = this.getAttribute("href");
+			if(myHref == students) {
+				return;
+			}
+
+		    var seft = plus.webview.currentWebview();
+			var sub = plus.webview.create(myHref, myHref, tabArray_style);
+			seft.append(sub);
+			plus.webview.hide(students);
+			students = myHref;
+		});
+	</script>
+
+</html>

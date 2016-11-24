@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/y_s.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">设置</h1>
+			<a class="mui-icon mui-icon-left-nav" id="setClose"></a>
+		</header>
+		<div class="mui-content">
+			<ul>
+				<li class="wu-table-li-son"></li>
+				<!--站位li-->
+
+				<li class="wu-table-li" id="getuserName">
+					<span id="userName">曹操</span>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #666;"></a>
+				</li>
+
+				<li class="wu-table-li-son"></li>
+				<!--站位li-->
+
+				<li class="wu-table-li">清除记录</li>
+				<li class="wu-table-li">显示高清图片</li>
+				<li class="wu-table-li">
+					<span id="userName">清除缓存</span>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #666;"></a>
+				</li>
+
+				<li class="wu-table-li-son"></li>
+				<!--站位li-->
+
+				<li class="wu-table-li">
+					<span id="userName">意见反馈</span>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #666;"></a>
+				</li>
+				<li class="wu-table-li">
+					<span id="userName">关于</span>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #666;"></a>
+				</li>
+
+				<li class="wu-table-li-son"></li>
+				<!--站位li-->
+
+				<li class="wu-table-li">
+					<span id="userName">当当读书</span>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #666;"></a>
+				</li>
+				<div style="padding: 20px;">
+					<button type="button" class="mui-btn-block" style="background-color:#ff463c; color: white; border: none;" id="exitLogin">退出登录</button>
+				</div>
+			</ul>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		mui.plusReady(function() {
+			var strNun = plus.storage.getItem('userName');
+			document.getElementById("userName").innerHTML = strNun;
+		});
+		document.getElementById("getuserName").addEventListener("tap", function() {
+			mui.openWindow({
+				url: 'ModifyInformation.html',
+				id: 'ModifyInformation'
+			})
+		});
+
+		document.getElementById("setClose").addEventListener("tap", function() {
+			var myclose = plus.webview.currentWebview();
+			plus.webview.close(myclose);
+		});
+		document.getElementById("exitLogin").addEventListener("tap", function() {
+			plus.storage.clear();
+			alert("退出成功");
+			var myclose = plus.webview.currentWebview();
+			plus.webview.close(myclose);
+
+		});
+	</script>
+
+</html>

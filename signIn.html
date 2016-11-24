@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/y_s.css" />
+	</head>
+
+	<body>
+		<div class="wu-prompt" id="promptId">
+			<div class="wu-prompt-img" style="font-size: 22px;">
+				<img src="img/eqm.png" style="margin-right: 5px" /><span id="promptxt"></span>
+			</div>
+		</div>
+		<header class="mui-bar mui-bar-nav" style="background-color: #1fa5da;">
+			<h1 class="mui-title" style="color: white;">登录</h1>
+			<a class="mui-icon mui-icon-left-nav" style="color: white;" id="closeID"></a>
+			<a class="wu-a-right" id="refisterId">注册</a>
+		</header>
+		<div class="mui-content" style="background-color: #f9f9fb;">
+			<ul>
+				<li style="border: none;height: 20px;background-color: #f9f9fb;"></li>
+				<li class="wu-li-style">
+					<div class="mui-input-row" style="margin-top: 4px;margin-top: 4px;">
+						<label>用户名:</label>
+						<input type="text" class="mui-input-clear" id="userName" />
+					</div>
+				</li>
+				<li class="wu-li-style" style="border-bottom: 1px solid #e8e9ea;">
+					<div class="mui-input-row" style="margin-top: 4px;margin-top: 4px;">
+						<label>密&nbsp;&nbsp;&nbsp;码:</label>
+						<input type="password" / id="passName">
+					</div>
+				</li>
+			</ul>
+			<div class="wu-txt-prompt" style="margin-top: 15px;height: 30px;">
+				<div class="wu-checkbox-txt-left">
+					<input type="checkbox" id="checbxId" checked="checked">
+					<span style="position: absolute; bottom: -2px;left: 20px;" id="automaticLogon">自动登录</span>
+				</div>
+				<div class="wu-pass-right">
+					<a href="#" style="color: #666; text-decoration: underline;" id="forgetPass">忘记密码?</a>
+				</div>
+			</div>
+			<div class="wu-padding" style="margin-top: 15px;">
+				<button class="mui-btn-block" style="border: none;background-color: #ccc; color: #ACACB4;" id="register">登 录</button>
+			</div>
+			<!--<div class="wu-padding" style="margin-top: 15px;">
+				<button class="mui-btn-block" style="border: none;background-color: blue; color: #ACACB4;" id="register2">查询所有</button>
+			</div>
+			<div class="wu-padding" style="margin-top: 15px;">
+				<button class="mui-btn-block" style="border: none;background-color: blue; color: #ACACB4;" id="ssss">查询本地存储</button>
+			</div>
+			<div class="wu-padding" style="margin-top: 15px;">
+				<button class="mui-btn-block" style="border: none;background-color: blue; color: #ACACB4;" id="qingchu">清除本地路径</button>
+			</div>
+			<div class="wu-padding" style="margin-top: 15px;">
+				<button class="mui-btn-block" style="border: none;background-color: blue; color: #ACACB4;" id="shanchu">删除</button>
+			</div>-->
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/j_s.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		document.getElementById("automaticLogon").addEventListener("tap", function() {
+			var myChed = document.getElementById("checbxId");
+			if(myChed.checked == true) {
+				myChed.checked = false;
+			} else {
+				myChed.checked = true;
+			}
+		});
+
+		document.getElementById("userName").addEventListener("input", function() {
+			var myValue = document.getElementById("userName").value;
+			var myBtn = document.getElementById("register");
+			sdee(myValue, myBtn);
+		});
+
+		var url = "http://139.196.196.64/s.asmx";
+		document.getElementById("register").addEventListener("tap", function() {
+			var myValue = document.getElementById("userName").value;
+			var myPass = document.getElementById("passName").value;
+			var myPrompt = document.getElementById("promptId");
+			var mytxt = document.getElementById("promptxt");
+			if(myValue.length == 0) {
+				return false;
+			}
+			if(myPass.length == 0) {
+				myPrompt.style.display = "block";
+				mytxt.innerHTML = "密码不能为空";
+				return false;
+			} else {
+				myPrompt.style.display = "none";
+				var strtxt = document.getElementById("userName").value;
+				var strpas = document.getElementById("passName").value;
+				getAjax(url + "/SelectByKey2", {
+						id: 'www',
+						table: 'wu',
+						key1: 'userName',
+						value1: strtxt,
+						key2: 'password',
+						value2: strpas
+					},
+					function(a) {
+						var ojp = JSON.parse(a);
+						if(a == "[]") {
+							myPrompt.style.display = "block";
+							mytxt.innerHTML = "密码或用户名错误";
+							return false;
+						} else {
+							myPrompt.style.display = "none";
+							var meName = ojp[0].userName;
+							var mePass = ojp[0].password;
+							var userID = ojp[0].userID;
+							var phNumber = ojp[0].phoneNumber;
+							setIten('userName',meName); //调用函数并传递实参
+							setIten('userPass',mePass);
+							setIten('sopUserID',userID);
+							setIten('phoneNumber',phNumber);
+							mui.openWindow({
+								url: 'webview.html',
+								id: 'webview'
+							})
+						}
+					},
+					function(d) {
+						alert(d);
+						mui.toast("        登录失败               ");
+					})
+			}
+
+		});
+
+		document.getElementById("refisterId").addEventListener("tap", function() {
+			mui.openWindow({
+				url: 'register.html',
+				id: 'register',
+				show: {
+					autoShow: 'true',
+					aniShow: 'slide-in-right',
+					duration: '300'
+				}
+			})
+		});
+
+//		document.getElementById("register2").addEventListener("tap", function() {
+//			getAjax(url + "/SelectAll", {
+//					id: 'www',
+//					table: 'wu'
+//				},
+//				function(a) {
+//					alert(a);
+//				},
+//				function(d) {
+//					alert(d);
+//					alert("错的");
+//				});
+//		});
+
+//		document.getElementById("ssss").addEventListener("tap", function() { //查询函数
+//			var mytxt = document.getElementById("passName").value; //获取文本框值
+//			alert(mytxt)
+//			var myint = plus.storage.getItem(mytxt); //通过键(key)查询获取对应存储的值
+//			alert(myint);
+//		});
+
+//		document.getElementById("qingchu").addEventListener("tap", function() { //清除存储的中的全部数据函数
+//			plus.storage.clear(); //清除存储的中的全部数据
+//			alert("清除成功");
+//		});
+		
+//		document.getElementById("shanchu").addEventListener("tap",function(){ //删除书籍
+//			getAjax(url + "/Delete", { //调用公共函数
+//					id:'www',
+//					table:'wu',
+//					key:'userID',
+//					value:1
+//				},
+//				function(a) { //成功回调函数
+//					alert(a);
+//					alert("ffff");
+//				},
+//				function(d) { //失败回调函数
+//					alert(d);
+//				})
+//		});
+		
+		document.getElementById("promptId").addEventListener("tap",function(){
+			document.getElementById("promptId").style.display="none";
+		});
+		
+		document.getElementById("closeID").addEventListener("tap",function(){
+			var myClose = plus.webview.currentWebview()
+			plus.webview.close(myClose);
+		});
+	</script>
+
+</html>

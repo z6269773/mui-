@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/y_s.css" />
+	</head>
+
+	<body onload="">
+		<div id="popover3" class="mui-popover" style="width: 100%;position: fixed; top: 20%;">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" style="height: 50px;">
+					<div class="mui-input-row">
+						<label>收货人:</label>
+						<input id="ConsigneeMe" type="text" placeholder="请输入收货人" />
+					</div>
+				</li>
+				<li class="mui-table-view-cell" style="height: 50px;">
+					<div class="mui-input-row">
+						<label>收货人电话:</label>
+						<input id="telephoneMe" type="text" placeholder="请输入收货人电话" />
+					</div>
+				</li>
+				<li class="mui-table-view-cell" style="height: 50px;">
+					<div class="mui-input-row">
+						<label>收货人地址:</label>
+						<input id="addressMe" type="text" placeholder="请输入收货人地址" />
+					</div>
+				</li>
+				<li class="mui-table-view-cell" style="height: 50px;">
+					<div class="mui-input-row">
+						<label>收货地邮编:</label>
+						<input id="zipCodeMe" type="text" placeholder="请输入收货地邮政编码" />
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<button type="button" class="mui-btn-blue" id="myDetermine" style="margin-left: 16%;padding: 8px 25px;">取消</button>
+					<button type="button" class="mui-btn-blue" id="mycancel" style="margin-left: 17%;padding: 8px 25px;">确定</button>
+				</li>
+			</ul>
+		</div>
+
+		<div id="popover2" class="mui-popover" style="width: 100%;margin: auto;height: 150px; position: fixed;top: 40%;">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" style="text-align: center;">
+					请输入支付密码
+				</li>
+				<li class="mui-table-view-cell" style="height: 65px;">
+					<input type="password" id="txtPaymentPass" />
+				</li>
+				<li class="mui-table-view-cell">
+					<button type="button" class="mui-btn-blue" id="cancel" style="margin-left: 16%;padding: 8px 25px;">取消</button>
+					<button type="button" class="mui-btn-blue" id="Determine" style="margin-left: 17%;padding: 8px 25px;">确定</button>
+				</li>
+			</ul>
+		</div>
+		<div id="popover" class="mui-popover" style="width: 100%; position: fixed; bottom: 0px; right: 0px; left: 0px; height: 60%;">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" style="text-align: center;">
+					<span style="font-size: 20px;">付款详情</span>
+					<a class="mui-icon mui-icon-closeempty mui-pull-left" style="font-size: 30px; color: #666;" id="closePayment"></a>
+					<a class="mui-icon mui-icon-help mui-pull-right" style="color: #1FA5DA;"></a>
+				</li>
+				<li class="mui-table-view-cell">
+					付款吗
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #B6B6B6;"></a>
+					<span class="mui-pull-right">中国银行</span>
+				</li>
+				<li class="mui-table-view-cell">
+					付款吗
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #B6B6B6;"></a>
+					<span class="mui-pull-right">中国银行</span>
+				</li>
+				<li class="mui-table-view-cell">
+					付款吗
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #B6B6B6;"></a>
+					<span class="mui-pull-right">中国银行</span>
+				</li>
+			</ul>
+			<div class="wu-payment">
+				<button type="button" class="mui-btn-blue mui-btn-block" id="payment">确定付款</button>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab" style="padding: 0px 20px;">
+			<div class="wu-nav-left">
+				总额(含运费)<span style="color: red;font-size: 20px; font-weight: bold;">￥</span><span style="color: red;font-size: 18px; font-weight: bold;" id="totalAmount"></span>
+			</div>
+			<div class="wu-nav-right" id="placeOrder">
+				提交订单
+			</div>
+		</nav>
+
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">订单结算</h1>
+			<a class="mui-icon mui-icon-left-nav" id="closeID"></a>
+		</header>
+		<div class="mui-content">
+			<div class="wu-goodsReceipt" id="goodsReceipt">
+				<div class="wu-Consignee">
+					<div class="wu-Consignee_left">收货人：<span id="fullName">愈进</span></div>
+					<div class="wu-Consignee_right" id="telephone">15707495309</div>
+				</div>
+				<div class="wu-address">
+					地&nbsp;&nbsp;址：<span id="address">湖南长沙市江西</span>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #B6B6B6;"></a>
+				</div>
+				<div class="wu-Postcode">
+					邮&nbsp;&nbsp;编：<span id="postcode">465995</span>
+				</div>
+			</div>
+			<!--收货地址结束-->
+			<div id="orderBox">
+
+			</div>
+			<div style="margin-bottom: 20px;">
+				<ul class="mui-table-view">
+					<li class="wu-table-li-son" style="height: 10px;"></li>
+					<li class="wu-table-li">
+						<span id="userName">礼券/余额/礼品/优惠码:</span>
+						<a class="mui-icon mui-icon-arrowright mui-pull-right" style="color: #666;"></a>
+						<span class="mui-pull-right">可使用</span>
+					</li>
+					<li class="mui-table-view-cell">
+						可用<span style="color: red;">0</span>积分，冲抵<span style="color: red;">￥</span><span style="color: red;">0.00</span>
+						<div class="mui-switch mui-switch-blue mui-switch-mini">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</li>
+				</ul>
+				<!--<div class="wu-goodsReceipt" style="border: none; margin-bottom: 60px; box-shadow: 1px 1px 10px #DDDDDD; padding-top: 10px; height: 70px;">
+					<div class="wu-Consignee" style="height: 25px;">
+						<div class="wu-Consignee_left" style="height: 25px; line-height: 25px;">商品总金额：</div>
+						<div class="wu-Consignee_right" style="height: 25px; line-height: 25px;">￥<span id="amountMoney"></span></div>
+					</div>
+					<div class="wu-Consignee" style="height: 25px;">
+						<div class="wu-Consignee_left" style="height: 25px; line-height: 25px;">运费：</div>
+						<div class="wu-Consignee_right" style="height: 25px; line-height: 25px;">￥<span>23</span></div>
+					</div>
+				</div>-->
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/j_s.js"></script>
+	<script type="text/javascript" src="../jquery/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		document.getElementById("closeID").addEventListener("tap", function() {
+			var myClose = plus.webview.currentWebview();
+			plus.webview.close(myClose);
+		});
+
+		var url = "http://139.196.196.64/s.asmx";
+		var num = 0;
+		mui.plusReady(function() {
+
+			getAjax(url + "/SelectAll", {
+					id: 'www',
+					table: 'orderForm'
+				},
+				function(evr) {
+					var userNameID = plus.storage.getItem('sopUserID');
+					var ojp = JSON.parse(evr);
+					for(var i = 0; i < ojp.length; i++) {
+						if(ojp[i].ordUserID == userNameID && ojp[i].orderStatus == 0) {
+							$("#orderBox").prepend("<div class='wu-order'>" +
+								"<div class='wu-order-top'>" + "订单" + "<span style='color: black;'>轩辕书城</span>" + "<span id='commodity'></span>" + "</div>" +
+								"<div class='wu-order-botton'>" + "共" + "<span id='number'></span>" + "件" + "&nbsp;&nbsp;&nbsp;" + "小计：" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='subtotal'></span>" +
+								"</div>" +
+								"</div>" +
+								"<ul class='mui-table-view'>" +
+								"<li class='mui-table-view-cell mui-media'>" +
+								"<a href='#'>" +
+								"<img class='mui-media-object mui-pull-left' id='imgSrc' src='' />" +
+								"<div class='mui-media-body'>" +
+								"<p class='mui-ellipsis' id='bookName'></p>" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='Price'></span>" +
+								"</div>" +
+								"</a>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>送货/付款:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>请选择</span>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>开具发票:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>不开发表</span>" +
+								"</li>" +
+								"<li class='wu-table-li' style='height: 65px;'>" +
+								"<input type='text' placeholder='要对商家说...(限70字)' id='opinion' />" +
+								"</li>" +
+								"</ul>"
+							);
+							document.getElementById("number").innerHTML = ojp[i].ordNumber;
+							var myOrdSubtotal = document.getElementById("subtotal").innerHTML = ojp[i].ordSubtotal;
+							document.getElementById("imgSrc").src = ojp[i].ordImgSrc;
+							document.getElementById("bookName").innerHTML = ojp[i].ordBookName;
+							document.getElementById("Price").innerHTML = ojp[i].ordPrice;
+							//document.getElementById("commodity"+ComID).innerHTML=ojp[i].orderID;
+							var parOrdSubtotal = parseFloat(myOrdSubtotal);
+							num += parOrdSubtotal;
+							document.getElementById("totalAmount").innerHTML = num;
+						} else {
+
+						}
+
+					}
+					//mui.toast("成功");
+				},
+				function(ev) {
+					mui.toast("无网络");
+				}
+			)
+		});
+
+		document.getElementById("placeOrder").addEventListener("tap", function() {
+			mui('#popover').popover('toggle');
+		});
+
+		document.getElementById("closePayment").addEventListener("tap", function() {
+			mui.back();
+		});
+
+		document.getElementById("payment").addEventListener("tap", function() {
+			mui('#popover2').popover('toggle');
+		});
+
+		document.getElementById("Determine").addEventListener("tap", function() {
+			var userNameID = plus.storage.getItem('sopUserID');
+			var myPass = document.getElementById("txtPaymentPass").value;
+			getAjax(url + "/SelectAll", {
+					id: 'www',
+					table: 'orderForm',
+				},
+				function(ev) {
+					var ojp = JSON.parse(ev);
+					for(var i = 0; i < ojp.length; i++) {
+						var myorderID = ojp[i].orderID;
+						var myorderNumber = ojp[i].orderNumber;
+						var myordUserID = ojp[i].ordUserID;
+						var myordCommodityID = ojp[i].ordCommodityID;
+						var myImgSrc = ojp[i].ordImgSrc;
+						var myBookName = ojp[i].ordBookName;
+						var myPrice = ojp[i].ordPrice;
+						var myNumber = ojp[i].ordNumber;
+						var mySubtotal = ojp[i].ordSubtotal;
+						var parNote = ojp[i].ordTotal;
+						if(ojp[i].ordUserID == userNameID) {
+							getAjax(url + "/Update", {
+									id: 'www',
+									table: 'orderForm',
+									key: 'ordCommodityID',
+									keyvalue: myordCommodityID,
+									values: JSON.stringify({
+										orderID: myorderID,
+										orderNumber: myorderNumber,
+										orderStatus: 1,
+										ordUserID: myordUserID,
+										ordCommodityID: myordCommodityID,
+										ordImgSrc: myImgSrc,
+										ordBookName: myBookName,
+										ordPrice: myPrice,
+										ordNumber: myNumber,
+										ordSubtotal: mySubtotal,
+										ordTotal: parNote
+									})
+								},
+								function(ev) {
+									mui.toast("   成功         ");
+								},
+								function(v) {
+									mui.toast("   失败         ");
+								}
+							)
+							mui.openWindow({
+								url: 'PaymentSuccess.html',
+								id: 'PaymentSuccess.html'
+							})
+						}
+					}
+				},
+				function(en) {
+
+				}
+			)
+
+		});
+
+		document.getElementById("cancel").addEventListener("tap", function() {
+			mui.back();
+		});
+
+		document.getElementById("goodsReceipt").addEventListener("tap", function() {
+			mui('#popover3').popover('toggle');
+		})
+
+		document.getElementById("mycancel").addEventListener("tap", function() {
+			var myConsigneeMe = document.getElementById("ConsigneeMe").value;
+			var mytelephoneMe = document.getElementById("telephoneMe").value;
+			var myaddressMe = document.getElementById("addressMe").value;
+			var myzipCodeMe = document.getElementById("zipCodeMe").value;
+			document.getElementById("fullName").innerHTML = myConsigneeMe;
+			document.getElementById("telephone").innerHTML = mytelephoneMe;
+			document.getElementById("address").innerHTML = myaddressMe;
+			document.getElementById("postcode").innerHTML = myzipCodeMe;
+			document.getElementById("ConsigneeMe").value = "";
+			document.getElementById("telephoneMe").value = "";
+			document.getElementById("addressMe").value = "";
+			document.getElementById("zipCodeMe").value = "";
+			mui.back();
+		});
+
+		document.getElementById("myDetermine").addEventListener("tap", function() {
+			document.getElementById("ConsigneeMe").value = "";
+			document.getElementById("telephoneMe").value = "";
+			document.getElementById("addressMe").value = "";
+			document.getElementById("zipCodeMe").value = "";
+			mui.back();
+		})
+	</script>
+
+</html>

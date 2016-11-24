@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/y_s.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">商品订单</h1>
+			<a class="mui-icon mui-icon-left-nav" id="closeID"></a>
+			<a class="mui-icon mui-icon-more mui-pull-right" style="font-size: 30px;"></a>
+		</header>
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+				<a class="mui-control-item mui-active" href="#item1mobile">
+					待付款
+				</a>
+				<a class="mui-control-item" href="#item2mobile">
+					待发货
+				</a>
+				<a class="mui-control-item" href="#item3mobile">
+					待收货
+				</a>
+				<a class="mui-control-item" href="#item4mobile">
+					待评价
+				</a>
+			</div>
+			<div class="mui-content-padded">
+				<div id="item1mobile" class="mui-control-content mui-active">
+
+				</div>
+				<div id="item2mobile" class="mui-control-content">
+
+				</div>
+				<div id="item3mobile" class="mui-control-content">
+
+				</div>
+				<div id="item4mobile" class="mui-control-content">
+					<div id="popover" class="mui-popover" style="width: 100%;height: 260px; top: 50%; margin-top: -130px; position: fixed;">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;">
+								评价
+							</li>
+							<li class="mui-table-view-cell">
+								<div class="mui-input-row">
+									<label>评价类容:</label>						
+								</div>
+								<textarea placeholder="请输入评价" id="ContentEvaluation"></textarea>
+							</li>
+							<li class="mui-table-view-cell" style="height: 50px; line-height: 50px;">
+								<div class="mui-input-row">
+									<label>评价等级:</label>						
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								<button type="button" class="mui-btn-blue" style="padding: 10px 20px; margin-left: 20%;" id="CancelEvaluation">取消</button>
+								<button type="button" class="mui-btn-blue" style="padding: 10px 20px; margin-left: 10%;" id="validationEvaluation">确定</button>
+							</li>
+						</ul>
+					</div>
+					<div id="iteevaluate"></div>
+				</div>
+			</div>
+		</div>
+		<!--<div><button type="button" class="mui-btn-block mui-btn-blue" id="sanchu">删除</button></div>-->
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/j_s.js"></script>
+	<script type="text/javascript" src="../jquery/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		var url = "http://139.196.196.64/s.asmx";
+		var num = 0;
+		mui.plusReady(function() {
+			getAjax(url + "/SelectAll", {
+					id: 'www',
+					table: 'orderForm'
+				},
+				function(evr) {
+					var userNameID = plus.storage.getItem('sopUserID');
+					var ojp = JSON.parse(evr);
+					for(var i = 0; i < ojp.length; i++) {
+						if(ojp[i].ordUserID == userNameID && ojp[i].orderStatus == 0) {
+
+							$("#item1mobile").prepend("<div class='wu-order'>" +
+								"<div class='wu-order-top'>" + "订单" + "<span style='color: black;'>轩辕书城</span>" + "</div>" +
+								"<div class='wu-order-botton'>" + "共" + "<span id='number'></span>" + "件" + "&nbsp;&nbsp;&nbsp;" + "小计：" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='subtotal'></span>" +
+								"</div>" +
+								"</div>" +
+								"<ul class='mui-table-view'>" +
+								"<li class='mui-table-view-cell mui-media'>" +
+								"<a href='#'>" +
+								"<img class='mui-media-object mui-pull-left' id='imgSrc' src='' />" +
+								"<div class='mui-media-body'>" +
+								"<p class='mui-ellipsis' id='bookName'></p>" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='Price'></span>" +
+								"</div>" +
+								"</a>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>送货/付款:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>请选择</span>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>开具发票:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>不开发表</span>" +
+								"</li>" +
+								"<li class='wu-table-li' style='height: 65px;'>" +
+								"<span style='color: red;'>未付款</span>" + "<span id='orderNumber' style='display: none;'></span>" + "<button class='mui-btn-blue mui-pull-right' onclick='deleteOrder(this)'>删除</button>" +
+								"</li>" +
+								"</ul>"
+							);
+							document.getElementById("number").innerHTML = ojp[i].ordNumber;
+							var myOrdSubtotal = document.getElementById("subtotal").innerHTML = ojp[i].ordSubtotal;
+							document.getElementById("imgSrc").src = ojp[i].ordImgSrc;
+							document.getElementById("bookName").innerHTML = ojp[i].ordBookName;
+							document.getElementById("Price").innerHTML = ojp[i].ordPrice;
+							document.getElementById("orderNumber").innerHTML = ojp[i].ordCommodityID;
+							var parOrdSubtotal = parseFloat(myOrdSubtotal);
+						} else if(ojp[i].ordUserID == userNameID && ojp[i].orderStatus == 1) {
+							$("#item2mobile").prepend("<div class='wu-order'>" +
+								"<div class='wu-order-top'>" + "订单" + "<span style='color: black;'>轩辕书城</span>" + "</div>" +
+								"<div class='wu-order-botton'>" + "共" + "<span id='number'></span>" + "件" + "&nbsp;&nbsp;&nbsp;" + "小计：" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='subtotal'></span>" +
+								"</div>" +
+								"</div>" +
+								"<ul class='mui-table-view'>" +
+								"<li class='mui-table-view-cell mui-media'>" +
+								"<a href='#'>" +
+								"<img class='mui-media-object mui-pull-left' id='imgSrc' src='' />" +
+								"<div class='mui-media-body'>" +
+								"<p class='mui-ellipsis' id='bookName'></p>" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='Price'></span>" +
+								"</div>" +
+								"</a>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>送货/付款:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>请选择</span>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>开具发票:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>不开发表</span>" +
+								"</li>" +
+								"<li class='wu-table-li' style='height: 65px;'>" +
+								"<span id='orderNumber' style='display: none;'></span>" + "<span style='color: red;'>已付款</span>" +
+								"</li>" +
+								"</ul>"
+							);
+							document.getElementById("number").innerHTML = ojp[i].ordNumber;
+							var myOrdSubtotal = document.getElementById("subtotal").innerHTML = ojp[i].ordSubtotal;
+							document.getElementById("imgSrc").src = ojp[i].ordImgSrc;
+							document.getElementById("bookName").innerHTML = ojp[i].ordBookName;
+							document.getElementById("Price").innerHTML = ojp[i].ordPrice;
+							document.getElementById("orderNumber").innerHTML = ojp[i].ordCommodityID;
+							var parOrdSubtotal = parseFloat(myOrdSubtotal);
+
+							$("#iteevaluate").prepend("<div class='wu-order'>" +
+								"<div class='wu-order-top'>" + "订单" + "<span style='color: black;'>轩辕书城</span>" + "</div>" +
+								"<div class='wu-order-botton'>" + "共" + "<span id='number1'></span>" + "件" + "&nbsp;&nbsp;&nbsp;" + "小计：" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='subtotal1'></span>" +
+								"</div>" +
+								"</div>" +
+								"<ul class='mui-table-view'>" +
+								"<li class='mui-table-view-cell mui-media'>" +
+								"<a href='#'>" +
+								"<img class='mui-media-object mui-pull-left' id='imgSrc1' src='' />" +
+								"<div class='mui-media-body'>" +
+								"<p class='mui-ellipsis' id='bookName1'></p>" +
+								"<span style='color: red;'>￥</span>" + "<span style='color: red;' id='Price1'></span>" +
+								"</div>" +
+								"</a>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>送货/付款:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>请选择</span>" +
+								"</li>" +
+								"<li class='wu-table-li'>" +
+								"<span id='userName'>开具发票:</span>" + "<a class='mui-icon mui-icon-arrowright mui-pull-right' style='color: #666;'></a>" +
+								"<span class='mui-pull-right'>不开发表</span>" +
+								"</li>" +
+								"<li class='wu-table-li' style='height: 65px;'>" +
+								"<span style='color: red;'>已付款</span>" + "<span id='orderNumber1' style='display: none;'></span>" + "<button class='mui-btn-blue mui-pull-right' onclick='myevaluate(this)'>评价</button>" +
+								"</li>" +
+								"</ul>"
+							);
+							document.getElementById("number1").innerHTML = ojp[i].ordNumber;
+							var myOrdSubtotal = document.getElementById("subtotal1").innerHTML = ojp[i].ordSubtotal;
+							document.getElementById("imgSrc1").src = ojp[i].ordImgSrc;
+							document.getElementById("bookName1").innerHTML = ojp[i].ordBookName;
+							document.getElementById("Price1").innerHTML = ojp[i].ordPrice;
+							document.getElementById("orderNumber1").innerHTML = ojp[i].ordCommodityID;
+							var parOrdSubtotal = parseFloat(myOrdSubtotal);
+
+							//							document.getElementById("comNumber").innerHTML=ojp[i].ordNumber;
+							//							document.getElementById("comSubtotal").innerHTML=ojp[i].ordSubtotal;
+							//							document.getElementById("comImgSrc1").src=ojp[i].ordImgSrc;
+							//							document.getElementById("comBookName1").innerHTML=
+							//							document.getElementById("comComPrice1").innerHTML=
+						}
+
+					}
+					//mui.toast("成功");
+				},
+				function(ev) {
+					mui.toast("无网络");
+				}
+			)
+		});
+
+		document.getElementById("closeID").addEventListener("tap", function() {
+			var myClose = plus.webview.currentWebview();
+			plus.webview.close(myClose);
+		});
+		
+		document.getElementById("CancelEvaluation").addEventListener("tap",function(){
+			mui.back();
+		});
+		
+		document.getElementById("validationEvaluation").addEventListener("tap",function(){
+			var myContentEvaluation = document.getElementById("ContentEvaluation").value;
+			var myDate = new Date();
+			var myuserID = plus.storage.getItem('userName');
+			getAjax(url+"/Insert",{
+				id:'www',
+				table:'evaluationForm',
+				values: JSON.stringify({
+					evaluationID:2,
+					evaluatingCapacity:myContentEvaluation,
+					evauserID:myuserID,
+					evacomNumber:mycomNumber,
+					evaDate:myDate
+				})
+			},
+			function(wer){
+				getAjax(url+"/Delete",{
+					id:'www',
+					table:'orderForm',
+					key:'ordCommodityID',
+					value:mycomNumber
+				},
+				function(ge){
+					mui.back();
+					location.reload();
+				},
+				function(tv){
+					
+				}
+				)
+				
+				//document.getElementById("ContentEvaluation")="";
+			},
+			function(er){
+				alert(er);
+			}
+			)
+		});
+		
+//		document.getElementById("sanchu").addEventListener("tap",function(){ //删除书籍
+//			getAjax(url + "/Delete", { //调用公共函数
+//					id:'www',
+//					table:'evaluationForm',
+//					key:'evaluationID',
+//					value:2
+//				},
+//				function(a) { //成功回调函数
+//					mui.toast("成功");
+//				},
+//				function(d) { //失败回调函数
+//					alert(d);
+//				})
+//		});
+	</script>
+
+</html>
